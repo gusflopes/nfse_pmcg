@@ -57,12 +57,13 @@ async function hello() {
     vars["root"] = await driver.getWindowHandle();
     await driver.switchTo().window(vars["root"]);
     await driver.switchTo().frame(1);
+    await later(1500);
     await driver.findElement(By.css("#fundopopup")).click();
     await driver.findElement(By.linkText("Acesso ao Sistema")).click();
-    await driver.findElement(By.id("rLogin")).sendKeys(process.env.USER_LOGIN);
+    await driver.findElement(By.id("rLogin")).sendKeys(process.env.USER_LOGIN!);
     await driver
       .findElement(By.id("rSenha"))
-      .sendKeys(process.env.USER_PASSWORD);
+      .sendKeys(process.env.USER_PASSWORD!);
     await driver.findElement(By.id("rSelo")).isEnabled();
     // const catpcha = await driver.findElement(By.xpath(`*[@id="coluna5B"]/form/table/tbody/tr[3]/td[4]/img`))
     const catpcha = await driver.findElement(By.css(`td > img`))
@@ -74,9 +75,9 @@ async function hello() {
 
     // Tirar uma screenshot do element com id rSelo e descobrir captcha usando tesseract
     const screenshot = await catpcha.takeScreenshot();
-    fs.writeFileSync('captcha.png', screenshot, 'base64');
+    fs.writeFileSync('/tmp/captcha.png', screenshot, 'base64');
 
-    const texto2 = await solveCaptcha('captcha.png')
+    const texto2 = await solveCaptcha('/tmp/captcha.png')
     // const texto = await solveCaptcha(screenshot)
 
     console.log(texto2)

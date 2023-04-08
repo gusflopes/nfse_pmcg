@@ -32,5 +32,5 @@ async function hello(url) {
 }
 
 (async () => {
-  await hello("http://www.google.com.br");
+  await hello("http://www.tjms.jus.br");
 })();

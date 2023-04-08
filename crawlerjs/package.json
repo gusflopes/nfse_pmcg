@@ -15,7 +15,7 @@
     "dotenv": "^16.0.3",
     "puppeteer": "^19.7.5",
     "selenium-webdriver": "^4.8.1",
-    "tesseract.js": "^2.1.1"
+    "tesseract.js": "^4.0.3"
   },
   "devDependencies": {
     "@google-cloud/functions-framework": "^3.1.3",

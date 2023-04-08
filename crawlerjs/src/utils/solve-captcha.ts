@@ -20,10 +20,18 @@ import { createWorker } from 'tesseract.js';
 //   await worker.terminate();
 // })();
 
+
+const worker = createWorker({
+  workerPath: 'https://unpkg.com/tesseract.js@v2.0.0/dist/worker.min.js',
+  langPath: 'https://tessdata.projectnaptha.com/4.0.0',
+  corePath: 'https://unpkg.com/tesseract.js-core@v2.0.0/tesseract-core.wasm.js',
+});
+
 export const solveCaptcha = async (captchaImage: string) => {
   const worker = createWorker({
     logger: m => console.log(m),
   });
+
   const language = 'eng';
   await worker.load();
   await worker.loadLanguage(language);
